@@ -54,7 +54,14 @@ def binning_features(df):
         labels=["Low", "Medium", "High"]
     )
 
+    df["Age_Bin"] = df["Age_Bin"].map({
+        "Low": 0,
+        "Medium": 1,
+        "High": 2
+    })
+
     return df
+
 
 def preprocess_pipeline(input_path, output_path):
     df = load_data(input_path)

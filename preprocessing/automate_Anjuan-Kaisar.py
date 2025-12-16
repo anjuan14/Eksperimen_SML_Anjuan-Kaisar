@@ -56,4 +56,20 @@ def binning_features(df):
 
     return df
 
+def preprocess_pipeline(input_path, output_path):
+    df = load_data(input_path)
+    df = handle_missing_values(df)
+    df = remove_duplicates(df)
+    df = encode_categorical(df)
+    df = standardize_features(df)
+    df = binning_features(df)
 
+    df.to_csv(output_path, index=False)
+    print(f"Dataset preprocessed disimpan di: {output_path}")
+
+
+if __name__ == "__main__":
+    preprocess_pipeline(
+        input_path="heart_disease_raw.csv",
+        output_path="preprocessing/heart_disease_preprocessed_automate.csv"
+    )
